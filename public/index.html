@@ -1,0 +1,99 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<title>
+    Quotes
+</title>
+
+    <body>
+<div class="container-fluid" style="padding-top: 14px;background-color: gray">
+    <nav class="navbar navbar-inverse" style="background-color: black">
+
+        <div class="nav nav-pills" style="color: orange;font-weight: 600;font-family: cursive; font-size: 17px;padding-bottom: 3px">
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse" >
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/index.html">Home</a></li>
+                    <!--li ><a href="/add_quotes">Add quotes</a></li-->
+                    <!--li><a href="/post_quotes">Post Quotes</a></li-->
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+</div>
+<br/>
+<div class="container-fluid" style="background-color: aliceblue">
+        <div class="row">
+            <div class="jumbotron">
+                <div class="col-lg-12" style="background-color: lightgray">
+                        
+                        <div class="jumbotron; col-lg-6">
+                            <h3>For Adding Quotes to DB:</h3><hr style="border:groove;color: black">
+                                                                 
+                            <h5 align="Center">*** Quote's Details ***</h5>   <hr style="border:groove;color: black">
+                            <form method="post" action= "/post_quote">
+                                    <p>
+                                        <span style="font-family: cursive;font-weight: 700;font-size: 16px;color: brown">Insert Quotes:</span><input type="text" name="saying" placeholder="I am unhelpful YODA" style="margin-left: 33px">
+                                </p>
+                                    <hr style="border:groove;color: black">
+                                <p>
+                                    <span style="font-family: cursive;font-weight: 700;font-size: 16px;color: brown">By:</span>
+                                    <input type="text" name="by" placeholder="John Doe" style="margin-left: 120px">
+                                </p>            
+                                    <hr style="border:groove;color: black">
+                                <p>
+                                    <span style="font-family: cursive;font-weight: 700;font-size: 16px;color: brown">Genre:</span>
+                                        <select name="genre" style="margin-left: 90px">
+                                            <option value="war">War</option>
+                                            <option value="motivation">Motivation</option>
+                                            <option value="love">Love</option>
+                                            <option value="life">Life</option>
+                                            <option value="change">Change</option>
+                                            <option value="horror">Horror</option>
+                                        </select>
+                                    
+                                </p>            
+                                    <hr style="border:groove;color: black">
+                                <input type="submit" value="Post Quote" class="btn btn-success">
+                                 <hr style="border:groove;color: black">
+                            </form>
+                    </div>
+                    <div class="jumbotron; col-lg-6">
+                            <h3>For Retrieving Quotes:</h3><hr style="border:groove;color: black">
+                                                                 
+                            <h5 align="Center">*** Get a Quote ***</h5>   <hr style="border:groove;color: black">
+                            <form method="post" action= "/get_quote">
+                               <p>
+                                    <span style="font-family: cursive;font-weight: 700;font-size: 16px;color: brown">Genre:</span>
+                                        <select name="genre" style="margin-left: 90px">
+                                            <option value="war">War</option>
+                                            <option value="motivation">Motivation</option>
+                                            <option value="love">Love</option>
+                                            <option value="life">Life</option>
+                                            <option value="change">Change</option>
+                                            <option value="horror">Horror</option>
+                                        </select>
+                                    
+                                </p>  
+                                <hr style="border:groove;color: black">
+                                    <input type="submit" value="Get Quote" class="btn btn-warning">
+                                <hr style="border:groove;color: black">
+                            </form>
+                    </div>
+                    
+            </div>
+        </div>
+    </div>
+        </div>
+</body>
+</html>

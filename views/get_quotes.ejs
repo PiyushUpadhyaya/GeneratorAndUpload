@@ -1,0 +1,73 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<title>
+    Quotes
+</title>
+
+    <body>
+<div class="container-fluid" style="padding-top: 14px;background-color: gray">
+    <nav class="navbar navbar-inverse" style="background-color: black">
+
+        <div class="nav nav-pills" style="color: orange;font-weight: 600;font-family: cursive; font-size: 17px;padding-bottom: 3px">
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse" >
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/index.html">Home</a></li>
+                    <!--li ><a href="/add_quotes">Add quotes</a></li-->
+                    <!--li><a href="/post_quotes">Post Quotes</a></li-->
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+</div>
+<br/>
+<div class="container-fluid" style="background-color: aliceblue">
+        <div class="row">
+            <div class="jumbotron">
+                <div class="col-lg-12" style="background-color: lightgray">
+                        
+                        <div class="jumbotron; col-lg-12">
+                            <h3>Voila! Your Today's Quote is:: </h3><hr style="border:groove;color: black">
+                                        <span>
+                                            <% var i = Math.floor((Math.random()*output.length)+1) 
+                                                if(i>=output.length)
+                                                    i=output.length-1;
+                                            %>
+                                        </span>
+                                        <tr>
+                                        <td><span style="color: orange;font-weight: 600;font-family: cursive; font-size: 17px;padding-bottom: 3px"><%= output[i].saying %></span></td>
+                                            <br/>
+                                        <td >--By 
+                                            <span style="color: green;font-weight: 600;font-family: cursive; font-size: 17px;padding-bottom: 3px">
+                                                <%= output[i].by %>
+                                            </span></td>
+                                    </tr>
+                            <form method="post" action= "/post_fb">
+                               <hr style="border:groove;color: black">
+                                    <input type="submit" value="Post on Facebook" class="btn btn-primary">
+                            </form>
+                            <form method="post" action= "/post_insta">
+                                <hr style="border:groove;color: black">
+                                    <input type="submit" value="Post on Instagram" class="btn btn-danger">
+                                <hr style="border:groove;color: black"> 
+                            </form>
+                            
+                                  
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</body>
+</html>
