@@ -17,16 +17,17 @@ var db = mongojs('quotes', ['quotes']);
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(validator());
-
-
-var Jimp  = require('jimp');
+var request = require('request');
+var passport = require('passport');
+var OAuthStrategy = require('passport-oauth').OAuthStrategy;
+//var canvas = require('canvas');
 var fs = require('fs');
-var text2png = require('text2png');
+//var text2png = require('text2png');
 
 var FormData = require('form-data');
 var FB = require('fb');
 var request = require('request');
-var access_token = "EAACEdEose0cBAN8nowi0in5wllGV7qZBsEoqCAYZAPyDRbSo8e9ixGccGLitgEsgSWB0IIhmpIXDybQaZA96TxxoZCligZBZACxsC4Ejo9AD3PdAEgzlhGs5ZB7u61UK1CZAk40natLZC3qUP68ZBLcK8h5qG4t4wHAEVBiUZAUXuBKg4RnMC9mKEQmC2BszxMZBw6pZBqCt95EvQ6EhXwZB0FrsAGVZCI6qn6z5vgZD";
+var authToken = "EAACEdEose0cBAFElCyIdQljRtxLBCZADxwvWiwhjrmjdEjpetZAVzx1NK43VNiNoZBSHWshEej37s5mbrHD2jz69uPpvs0DZAZBTrrfvpSW4CQeFK0Xlh4KZBZAYvFMS8TvovV6aDxBOMZCkqO1Ee6OBWiD8ZAr9krQXA1TO0vztHiPmZCJwsNtON2N3ZBblPDpitIZD";
 
 
            ///For index.html*/
@@ -51,69 +52,23 @@ var access_token = "EAACEdEose0cBAN8nowi0in5wllGV7qZBsEoqCAYZAPyDRbSo8e9ixGccGLi
          db.quotes.find().toArray((err, result) => {
          if (err) return console.log(err)
          res.render('get_quotes.ejs', {output: result})
-         fs.writeFileSync('upload.png',text2png(output,{textColor: 'blue'}));
+       //  fs.writeFileSync('upload.png',text2png(output,{textColor: 'blue'}));
         });
     });
 
 ///post on facebook
-    app.post('/post_fb', (req,res) => {
-         var form = new FormData();
-        var options = {
-            method: 'post',
-            host: 'www.facebook.com',
-            path: '/me/photos?access_token='+access_token,
-            headers: form.getHeaders(),
+    app.post('/post_fb', (req, res) => {
+    request.post(
+        {
+            url: 'https://graph.facebook.com/me/photos?access_token=' + authToken, 
+            formData: {
+                message: "DaFUCK! Please Chal Jaa Bhai, Allah ke qahar se darr",
+                source: fs.createReadStream("./test2.jpg") 
+                    }
         }
-         var request = https.request(options,function (res) {
-            console.log("Looks like something is going fine");
-          //  console.log(res);
-        });
-        
-        request.post(
-            {
-                url: 'https://graph.facebook.com/me/photos?access_token=' + access_token, 
-                formData: {
-                    message: 'message',
-                    source: fs.createReadStream('/images/test.jpg') 
-                }
-            }, function(err, res, body) {
-                var bodyJSON = JSON.parse(body);
-                if(bodyJSON.error) {
-                    console.log(bodyJSON.error.message);
-                }
-            }
-        );
-       /* FB.getLoginStatus(function(response) {
-          if (response.status === 'connected') {
-            var access_token = response.authResponse.accessToken;
-              console.log(access_token)
-          } 
-        });
-        console.log("initial stage of posting data to FB");
-        console.log(req.body);
-            
-        var form = new FormData();
-        form.append('file',fs.createReadStream(__dirname+'/test.jpg'));
-        form.append('message',"Gaitoo");
-
-        var options = {
-            method: 'post',
-            host: 'www.facebook.com',
-            path: '/me/photos?access_token='+access_token,
-            headers: form.getHeaders(),
-        }
-        var request = https.request(options,function (res) {
-            console.log("Looks like something is going fine");
-          //  console.log(res);
-        });
-        console.log("makng form pipe")
-        form.pipe(request);
-        console.log("we are here out of request");
-        request.on('error', function (error) {
-            console.log("requestwise error on facebook")
-            console.log(error);
-        });*/
-        
-    })
+    );
+        console.log("outta");
+        res.redirect('/');
+});
 app.listen(3000);
 console.log("Server running on port 3000")
