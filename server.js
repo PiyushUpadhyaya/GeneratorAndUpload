@@ -58,6 +58,7 @@ var authToken = "EAACEdEose0cBAFElCyIdQljRtxLBCZADxwvWiwhjrmjdEjpetZAVzx1NK43VNi
 
 ///post on facebook
     app.post('/post_fb', (req, res) => {
+        console.log("Posting on Facebook");
     request.post(
         {
             url: 'https://graph.facebook.com/me/photos?access_token=' + authToken, 
@@ -70,5 +71,10 @@ var authToken = "EAACEdEose0cBAFElCyIdQljRtxLBCZADxwvWiwhjrmjdEjpetZAVzx1NK43VNi
         console.log("outta");
         res.redirect('/');
 });
+///post on insta
+app.post('/post_insta', (req, res) => {
+        console.log("Posting on insta");
+         res.render('rollback.ejs');
+    });
 app.listen(3000);
 console.log("Server running on port 3000")
